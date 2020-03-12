@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    Vue JS mounted successfully
+    <router-view></router-view>
   </div>
 </template>
 
