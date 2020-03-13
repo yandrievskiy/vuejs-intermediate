@@ -1,4 +1,4 @@
 export default {
-  someData: '123',
-  anotherData: '123',
+  posts: [],
+  loadingPosts: false,
 };

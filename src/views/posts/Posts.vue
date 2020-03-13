@@ -21,45 +21,18 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          userId: 1,
-          id: 1,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-        {
-          userId: 1,
-          id: 2,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-        {
-          userId: 1,
-          id: 3,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-        {
-          userId: 1,
-          id: 4,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-        {
-          userId: 1,
-          id: 5,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-        {
-          userId: 1,
-          id: 6,
-          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-          body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-        },
-      ],
+      loading: false,
     };
+  },
+  async created() {
+    this.loading = true;
+    await this.$store.dispatch('posts/loadPosts');
+    this.loading = false;
+  },
+  computed: {
+    posts() {
+      return this.$store.getters['posts/getPosts'];
+    },
   },
 };
 </script>
