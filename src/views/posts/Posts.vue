@@ -26,7 +26,7 @@ export default {
   },
   async created() {
     this.loading = true;
-    await this.$store.dispatch('posts/loadPosts');
+    await this.$store.dispatch('posts/loadPosts', { perPage: 10, page: 3 });
     this.loading = false;
   },
   computed: {
