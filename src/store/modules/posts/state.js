@@ -1,13 +1,10 @@
 export default {
-  posts: [],
-  loadingPosts: false,
-  meta: {
+  data: {},
+  meta: {},
+  defaultMeta: {
+    total: 100,
     currentPage: 1,
-    from: 0,
-    lastPage: 1,
-    path: '',
     perPage: 10,
-    to: 0,
-    total: 0,
   },
+  loadingPosts: false,
 };

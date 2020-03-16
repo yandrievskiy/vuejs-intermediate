@@ -1,5 +1,8 @@
 export default {
   getPosts(state) {
-    return state.posts;
+    return state.data;
+  },
+  getPostsMeta(state) {
+    return state.meta;
   },
 };

@@ -17,7 +17,6 @@ export default {
 <style lang="scss">
 .post-card {
   border: 1px solid black;
-  box-sizing: border-box;
   padding: 24px;
 }
 </style>
