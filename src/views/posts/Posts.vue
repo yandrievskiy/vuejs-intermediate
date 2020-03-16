@@ -35,13 +35,19 @@ export default {
   methods: {
     async loadPosts() {
       const params = this.$route.query;
-      await this.$store.dispatch('posts/loadPosts', params);
+      console.log(this.$route.params);
+
+      if (this.$route.params.id) {
+        await this.$store.dispatch('posts/loadPostsForUser', { ...params, userId: this.$route.params.id });
+      } else {
+        await this.$store.dispatch('posts/loadPosts', params);
+      }
     },
 
     handleSelect(data) {
       this.$router.push({
         name: 'posts.index',
-        query: { currentPage: 1, perPage: data },
+        query: { ...this.$route.query, currentPage: 1, perPage: data },
       });
     },
   },

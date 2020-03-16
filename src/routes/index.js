@@ -16,12 +16,12 @@ const routes = [
     component: Auth,
   },
   {
-    path: '/posts',
+    path: '/posts/:id?',
     name: 'posts.index',
     component: Posts,
   },
   {
-    path: '/posts/:id',
+    path: '/posts',
     name: 'posts.details',
     component: Post,
   },
