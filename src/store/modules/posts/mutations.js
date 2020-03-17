@@ -2,12 +2,6 @@ export default {
   setPosts(state, payload) {
     state.data = payload.data;
     state.meta = payload.meta;
+    state.authors = payload.authors;
   },
-
-  // setMeta(state, payload) {
-  //   state.meta = {
-  //     ...state.meta,
-  //     ...payload,
-  //   };
-  // },
 };

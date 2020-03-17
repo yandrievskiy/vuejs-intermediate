@@ -17,8 +17,4 @@ export default {
         commit('setPosts', payload);
       });
   },
-
-  // setMeta({ commit }, payload) {
-  //   commit('setMeta', payload);
-  // },
 };

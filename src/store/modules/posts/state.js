@@ -1,5 +1,6 @@
 export default {
   data: {},
+  authors: [],
   meta: {},
   defaultMeta: {
     total: 100,

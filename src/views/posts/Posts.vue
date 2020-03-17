@@ -1,6 +1,7 @@
 <template>
   <div class="posts-list">
     <div v-if="posts.length" class="posts-list__wrapper">
+      <posts-filter @filterChange="handleFilters" :authorsList="authors"></posts-filter>
       <post-card v-for="post in posts" :post="post" :key="post.id"></post-card>
       <posts-pagination @perPageChange="handleSelect" :meta="meta"></posts-pagination>
     </div>
@@ -14,6 +15,7 @@
 import PostCard from '@/views/posts/partials/PostCard.vue';
 import PostsPlaceholder from '@/views/posts/partials/PostsPlaceholder.vue';
 import PostsPagination from '@/views/posts/partials/PostsPagination.vue';
+import PostsFilter from '@/views/posts/partials/PostsFilter.vue';
 
 export default {
   name: 'Posts',
@@ -21,6 +23,7 @@ export default {
     PostCard,
     PostsPlaceholder,
     PostsPagination,
+    PostsFilter,
   },
   data() {
     return {
@@ -35,7 +38,6 @@ export default {
   methods: {
     async loadPosts() {
       const params = this.$route.query;
-      console.log(this.$route.params);
 
       if (this.$route.params.id) {
         await this.$store.dispatch('posts/loadPostsForUser', { ...params, userId: this.$route.params.id });
@@ -50,6 +52,23 @@ export default {
         query: { ...this.$route.query, currentPage: 1, perPage: data },
       });
     },
+
+    handleFilters(data) {
+      if (!data) {
+        this.$router.push({
+          name: 'posts.index',
+          query: { currentPage: this.$route.query.currentPage, perPage: this.$route.query.perPage },
+        });
+        return;
+      }
+      this.$router.push({
+        name: 'posts.index',
+        query: { ...this.$route.query, currentPage: 1 },
+        params: {
+          id: data,
+        },
+      });
+    },
   },
   watch: {
     $route() {
@@ -62,6 +81,9 @@ export default {
     },
     meta() {
       return this.$store.getters['posts/getPostsMeta'];
+    },
+    authors() {
+      return this.$store.getters['posts/getPostsAuthorsList'];
     },
   },
 };

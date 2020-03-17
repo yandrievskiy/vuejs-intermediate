@@ -4,7 +4,7 @@
       <router-link
       :class="['pagination__link', { selected: page === currentPage }]"
       v-for="page in pages"
-      :to="{name: 'posts.index', query: {currentPage: page, perPage: meta.perPage}}"
+      :to="{name: 'posts.index', query: generateQueryString(page)}"
       :key="page">
       {{ page }}
       </router-link>
@@ -12,6 +12,7 @@
     <label for="perPage">
       Per Page:
       <select name="perPage" @input="handleInput">
+        <option value="5">5</option>
         <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>
@@ -39,6 +40,11 @@ export default {
     updateMeta() {
       this.currentPage = this.meta.currentPage;
       this.total = this.meta.totalPages;
+    },
+    generateQueryString(page) {
+      return this.$route.query.userId
+        ? { currentPage: page, perPage: this.meta.perPage, userId: this.$route.query.userId }
+        : { currentPage: page, perPage: this.meta.perPage };
     },
   },
   watch: {

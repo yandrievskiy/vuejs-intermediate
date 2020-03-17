@@ -5,4 +5,7 @@ export default {
   getPostsMeta(state) {
     return state.meta;
   },
+  getPostsAuthorsList(state) {
+    return state.authors;
+  },
 };
