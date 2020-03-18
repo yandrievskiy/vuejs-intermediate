@@ -1,7 +1,11 @@
 export default {
-  setPosts(state, payload) {
-    state.data = payload.data;
-    state.meta = payload.meta;
-    state.authors = payload.authors;
+  setUser(state, payload) {
+    state.user = payload;
+  },
+  setErrors(state, payload) {
+    state.errors = payload;
+  },
+  clearErrors(state) {
+    state.errors = {};
   },
 };
