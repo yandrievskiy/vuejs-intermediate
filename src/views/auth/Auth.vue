@@ -67,16 +67,36 @@ export default {
       },
     };
   },
+  created() {
+    if (this.userLoggedIn) {
+      this.$router.replace({
+        name: 'posts.index',
+      });
+    }
+  },
   methods: {
     async onSubmit() {
-      this.$refs.form.setErrors({
-        ...this.$store.state.auth.errors,
-      });
       await this.$store.dispatch('auth/signup', this.formData);
-      // this.$router.push({ name: 'posts.index' });
+      if (Object.keys(this.authErrors).length) {
+        this.$refs.form.setErrors({
+          ...this.authErrors,
+        });
+      }
+
+      if (Object.keys(this.$store.state.auth.user).length) {
+        this.$router.push({ name: 'posts.index' });
+      }
     },
     toggleModal() {
       this.isModalOpen = !this.isModalOpen;
+    },
+  },
+  computed: {
+    authErrors() {
+      return this.$store.getters['auth/getErrors'];
+    },
+    userLoggedIn() {
+      return this.$store.state.auth.user && !!Object.keys(this.$store.state.auth.user).length;
     },
   },
 };

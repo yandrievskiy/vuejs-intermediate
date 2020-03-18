@@ -4,8 +4,15 @@
       <img src="/images/logo.png" alt="">
     </router-link>
     <nav class="nav">
-      <router-link :to="{name: 'posts.index'}" class="nav__link">Posts</router-link>
-      <router-link :to="{name: 'auth.index'}" class="nav__link">Registration</router-link>
+      <router-link :to="{name: 'posts.index'}" class="nav__link">
+        Posts
+      </router-link>
+      <router-link v-if="!userLoggedIn" :to="{name: 'auth.index'}" class="nav__link">
+        Registration
+      </router-link>
+      <button v-else class="nav__link" @click="logout">
+        Logout
+      </button>
     </nav>
   </header>
 </template>
@@ -14,6 +21,16 @@
 
 export default {
   name: 'Header',
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+    },
+  },
+  computed: {
+    userLoggedIn() {
+      return this.$store.state.auth.user && !!Object.keys(this.$store.state.auth.user).length;
+    },
+  },
 };
 </script>
 
@@ -37,6 +54,12 @@ export default {
 
   &__link {
     margin-right: 10px;
+    background: transparent;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Arial';
 
     &:last-child {
       margin-right: 0;

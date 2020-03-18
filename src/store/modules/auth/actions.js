@@ -17,7 +17,10 @@ export default {
         }
 
         commit('setUser', json.user);
-        commit('clearErrors', {});
+        commit('clearErrors');
       });
+  },
+  logout({ commit }) {
+    commit('setUser', {});
   },
 };
