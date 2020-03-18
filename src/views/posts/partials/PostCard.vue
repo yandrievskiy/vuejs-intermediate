@@ -2,7 +2,7 @@
   <div class="post-card">
     <h1> {{ post.title }} </h1>
     <p> {{ post.body }} </p>
-    <button>Read more</button>
+    <button @click="redirectToDetails">Read more</button>
   </div>
 </template>
 
@@ -11,6 +11,16 @@
 export default {
   name: 'PostCard',
   props: ['post'],
+  methods: {
+    redirectToDetails() {
+      this.$router.push({
+        name: 'posts.details',
+        params: {
+          id: this.post.id,
+        },
+      });
+    },
+  },
 };
 </script>
 

@@ -8,4 +8,7 @@ export default {
   getPostsAuthorsList(state) {
     return state.authors;
   },
+  getCurrentPost(state) {
+    return state.currentPost;
+  },
 };

@@ -4,4 +4,7 @@ export default {
     state.meta = payload.meta;
     state.authors = payload.authors;
   },
+  setCurrentPust(state, payload) {
+    state.currentPost = payload;
+  },
 };
