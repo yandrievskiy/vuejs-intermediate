@@ -1,6 +1,8 @@
+import API_URL from '@/api';
+
 export default {
   async loadPosts({ commit }, params) {
-    const url = new URL('http://localhost:5000/vuejs-c6236/us-central1/api/posts');
+    const url = new URL(`${API_URL}/posts`);
     Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]));
     await fetch(url)
       .then((response) => response.json())
@@ -9,7 +11,7 @@ export default {
       });
   },
   async loadSinglePost({ commit }, id) {
-    const url = new URL(`http://localhost:5000/vuejs-c6236/us-central1/api/post/${id}`);
+    const url = new URL(`${API_URL}/post/${id}`);
     await fetch(url)
       .then((response) => response.json())
       .then((payload) => {
@@ -17,7 +19,7 @@ export default {
       });
   },
   async loadPostsForUser({ commit }, params) {
-    const url = new URL(`http://localhost:5000/vuejs-c6236/us-central1/api/posts/${params.userId}`);
+    const url = new URL(`${API_URL}/posts/${params.userId}`);
     Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]));
     await fetch(url)
       .then((response) => response.json())

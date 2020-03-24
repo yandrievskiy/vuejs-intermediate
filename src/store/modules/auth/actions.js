@@ -1,6 +1,9 @@
+import API_URL from '@/api';
+
 export default {
+
   async signup({ commit }, data) {
-    const url = new URL('http://localhost:5000/vuejs-c6236/us-central1/api/auth');
+    const url = new URL(`${API_URL}/auth`);
     await fetch(url, {
       method: 'POST',
       headers: {
